@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estratégia Financeira Avançada | 8º Ano - Festa das Nações</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            950: '#030712',
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155',
+                            600: '#475569'
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(30, 41, 59, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        .glass-card-gold {
+            background: rgba(245, 158, 11, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+        }
+        .glow-gold {
+            box-shadow: 0 0 25px -5px rgba(245, 158, 11, 0.35);
+        }
+        .glow-emerald {
+            box-shadow: 0 0 25px -5px rgba(16, 185, 129, 0.35);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+    </style>
+</head>
+<body class="bg-navy-900 text-slate-100 font-sans min-h-screen selection:bg-gold-500 selection:text-navy-950">
+
+    <!-- Sticky Navigation & Timer Header -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-navy-900/90 backdrop-blur-md border-b border-gold-500/20 px-4 py-3">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <span class="bg-gradient-to-br from-gold-400 to-gold-600 text-navy-950 p-2.5 rounded-xl font-black text-xl shadow-lg">
+                    <i class="fa-solid fa-chart-line"></i>
+                </span>
+                <div>
+                    <h1 class="font-bold text-lg leading-tight text-white flex items-center gap-2">
+                        Ciclo VIVA <span class="text-xs bg-gold-500/20 text-gold-400 border border-gold-500/40 px-2 py-0.5 rounded-md font-extrabold">8º ANO</span>
+                    </h1>
+                    <p class="text-xs text-slate-400">Engenharia Financeira & Gestão de Risco</p>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="hidden lg:flex items-center space-x-1 text-xs font-semibold">
+                <a href="#orcamento" class="px-3 py-1.5 rounded-lg hover:bg-navy-800 text-slate-300 hover:text-gold-400 transition">1. Orçamento</a>
+                <a href="#precificacao" class="px-3 py-1.5 rounded-lg hover:bg-navy-800 text-slate-300 hover:text-gold-400 transition">2. Precificação</a>
+                <a href="#ponto-equilibrio" class="px-3 py-1.5 rounded-lg hover:bg-navy-800 text-slate-300 hover:text-gold-400 transition">3. Margem de Segurança</a>
+                <a href="#fluxo-caixa" class="px-3 py-1.5 rounded-lg hover:bg-navy-800 text-slate-300 hover:text-gold-400 transition">4. Fluxo de Caixa</a>
+                <a href="#desafio" class="px-3 py-1.5 rounded-lg hover:bg-navy-800 text-slate-300 hover:text-gold-400 transition">5. Laboratório</a>
+                <a href="#quiz" class="px-3 py-1.5 rounded-lg hover:bg-navy-800 text-slate-300 hover:text-gold-400 transition">6. Quiz</a>
+            </div>
+
+            <!-- Class Timer Badge -->
+            <div class="flex items-center space-x-3">
+                <div class="bg-navy-800 border border-gold-500/30 px-3 py-1.5 rounded-xl flex items-center space-x-2 text-sm font-mono text-gold-400">
+                    <i class="fa-regular fa-clock animate-pulse"></i>
+                    <span id="timer-display">50:00</span>
+                </div>
+                <button id="timer-toggle-btn" onclick="toggleTimer()" class="text-xs bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold px-3 py-1.5 rounded-lg transition shadow-md">
+                    <i class="fa-solid fa-play" id="timer-icon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="pt-28 pb-16 px-4 relative overflow-hidden bg-gradient-to-b from-navy-950 via-navy-900 to-navy-900 border-b border-slate-800">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <span class="inline-block bg-gold-500/10 border border-gold-500/30 text-gold-400 font-semibold text-xs px-4 py-1.5 rounded-full uppercase tracking-widest mb-4">
+                <i class="fa-solid fa-shield-halved mr-1"></i> Formação Financeira Executiva
+            </span>
+            <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight mb-4 leading-tight">
+                Engenharia Financeira do Negócio: <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-amber-300 to-gold-500">Orçamento, Estratégia e Gestão de Risco</span>
+            </h1>
+            <p class="text-slate-300 text-base md:text-lg max-w-3xl mx-auto mb-8 font-light leading-relaxed">
+                Aprenda a estruturar o capital inicial, escolher a precificação estratégica ideal, calcular a margem de segurança contra imprevistos e controlar o fluxo de caixa do estande na <strong>Festa das Nações</strong>.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#orcamento" class="bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold px-6 py-3.5 rounded-xl shadow-lg glow-gold transition flex items-center space-x-2">
+                    <span>Iniciar Estruturação de Capital</span>
+                    <i class="fa-solid fa-arrow-down"></i>
+                </a>
+                <a href="#desafio" class="bg-navy-800 hover:bg-navy-700 text-slate-100 border border-slate-700 font-semibold px-6 py-3.5 rounded-xl transition flex items-center space-x-2">
+                    <i class="fa-solid fa-clipboard-check text-gold-400"></i>
+                    <span>Ir Direto ao Laboratório (15 min)</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULE 1: CAPITAL BUDGETING -->
+    <section id="orcamento" class="py-16 px-4 max-w-6xl mx-auto scroll-mt-20">
+        <div class="mb-10 text-center md:text-left">
+            <span class="text-gold-500 font-bold text-sm tracking-wider uppercase"><i class="fa-solid fa-coins mr-1"></i> Módulo 1 (Aula 01)</span>
+            <h2 class="text-2xl md:text-4xl font-extrabold text-white mt-1">Elaboração do Orçamento de Capital</h2>
+            <p class="text-slate-400 mt-2 max-w-2xl">Quanto custa colocar o projeto de pé? Mapeie os investimentos em equipamentos e garanta o Capital de Giro necessário para a operação.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Theory & Explanation -->
+            <div class="lg:col-span-5 space-y-4">
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold text-white mb-2"><i class="fa-solid fa-vault text-gold-400 mr-2"></i> As Duas Partes do Capital Inicial</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                        Para colocar qualquer negócio ou estande de pé sem faltar dinheiro no meio do caminho, precisamos dividir o orçamento em duas categorias fundamentais:
+                    </p>
+
+                    <div class="space-y-3 text-xs">
+                        <div class="bg-navy-900/90 p-3.5 rounded-xl border border-gold-500/30">
+                            <strong class="text-gold-400 text-sm block mb-1"><i class="fa-solid fa-screwdriver-wrench mr-1"></i> 1. Investimento Fixo (Estrutura/Ativos)</strong>
+                            <p class="text-slate-300">Bens duradouros e infraestrutura básica necessários para iniciar as atividades (máquinas, equipamentos, banners e decorações fixas).</p>
+                        </div>
+
+                        <div class="bg-navy-900/90 p-3.5 rounded-xl border border-emerald-500/30">
+                            <strong class="text-emerald-400 text-sm block mb-1"><i class="fa-solid fa-hand-holding-dollar mr-1"></i> 2. Capital de Giro (Working Capital)</strong>
+                            <p class="text-slate-300">Reserva em dinheiro para comprar os primeiros estoques de ingredientes, embalagens e manter o caixa funcionando antes das primeiras vendas entrarem.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-navy-800/80 p-4 rounded-xl border border-slate-700 text-xs text-slate-300">
+                    <p class="font-bold text-white mb-1"><i class="fa-solid fa-circle-exclamation text-amber-400 mr-1"></i> Erro Clássico do Empreendedor Iniciante:</p>
+                    <p class="text-slate-400">Gastar todo o dinheiro disponível comprando decorações de luxo e esquecer de reservar o Capital de Giro para comprar os ingredientes principais!</p>
+                </div>
+            </div>
+
+            <!-- Interactive Builder Simulator -->
+            <div class="lg:col-span-7 bg-navy-800 border border-slate-700 p-6 rounded-2xl shadow-2xl space-y-6">
+                <h3 class="text-lg font-bold text-white flex items-center justify-between border-b border-slate-700 pb-3">
+                    <span><i class="fa-solid fa-calculator text-gold-500 mr-2"></i> Construtor de Orçamento do Estande</span>
+                    <span class="text-xs bg-gold-500/10 text-gold-400 border border-gold-500/30 px-2.5 py-1 rounded-md">Monte seu Capital Inicial</span>
+                </h3>
+
+                <div class="space-y-3">
+                    <p class="text-xs text-slate-300">Selecione os itens necessários para o seu projeto:</p>
+
+                    <!-- Items List -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs" id="budget-items-container">
+                        <!-- Items rendered via JS -->
+                    </div>
+                </div>
+
+                <!-- Live Total Card -->
+                <div class="bg-navy-950 p-5 rounded-xl border border-gold-500/40 grid grid-cols-3 gap-2 text-center">
+                    <div>
+                        <span class="text-[11px] text-slate-400 block mb-1">Invest. Fixo</span>
+                        <span id="total-fixo" class="text-sm md:text-base font-extrabold text-gold-400 font-mono">R$ 0,00</span>
+                    </div>
+                    <div>
+                        <span class="text-[11px] text-slate-400 block mb-1">Capital de Giro</span>
+                        <span id="total-giro" class="text-sm md:text-base font-extrabold text-emerald-400 font-mono">R$ 0,00</span>
+                    </div>
+                    <div>
+                        <span class="text-[11px] text-slate-400 block mb-1">Capital Total</span>
+                        <span id="total-geral" class="text-sm md:text-base font-black text-white font-mono">R$ 0,00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULE 2: STRATEGIC PRICING -->
+    <section id="precificacao" class="py-16 px-4 max-w-6xl mx-auto scroll-mt-20 border-t border-slate-800">
+        <div class="mb-10 text-center md:text-left">
+            <span class="text-gold-500 font-bold text-sm tracking-wider uppercase"><i class="fa-solid fa-tags mr-1"></i> Módulo 2 (Aula 02)</span>
+            <h2 class="text-2xl md:text-4xl font-extrabold text-white mt-1">Formação de Preço Estratégica</h2>
+            <p class="text-slate-400 mt-2 max-w-2xl">Escolha a estratégia comercial ideal para o seu país: Skimming (Preço Premium) ou Penetração de Mercado (Volume de Vendas).</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            <!-- Skimming Strategy Card -->
+            <div class="lg:col-span-6 glass-card p-6 rounded-2xl border-t-4 border-t-gold-500 flex flex-col justify-between space-y-4">
+                <div>
+                    <div class="flex items-center space-x-3 mb-3">
+                        <span class="p-3 bg-gold-500/20 text-gold-400 rounded-xl text-xl"><i class="fa-solid fa-crown"></i></span>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Estratégia de Skimming <span class="text-xs text-gold-400 font-normal">(Preço Premium)</span></h3>
+                            <p class="text-xs text-slate-400">Preço Alto / Exclusividade / Alta Margem</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Lança o produto com um <strong>preço mais elevado</strong>, focado em público que busca alta qualidade, sofisticação ou pratos de preparação complexa.
+                    </p>
+                    <ul class="mt-3 space-y-1.5 text-xs text-slate-400 list-disc list-inside">
+                        <li><strong>Vantagem:</strong> Alta margem de lucro por unidade vendida.</li>
+                        <li><strong>Desafio:</strong> Exige excelente apresentação, embalagem e branding.</li>
+                        <li><strong>Exemplo na Feira:</strong> Fondue Suíço Gourmet / Tacos Mexicanos de Salmão.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Penetration Strategy Card -->
+            <div class="lg:col-span-6 glass-card p-6 rounded-2xl border-t-4 border-t-emerald-500 flex flex-col justify-between space-y-4">
+                <div>
+                    <div class="flex items-center space-x-3 mb-3">
+                        <span class="p-3 bg-emerald-500/20 text-emerald-400 rounded-xl text-xl"><i class="fa-solid fa-bolt"></i></span>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Penetração de Mercado <span class="text-xs text-emerald-400 font-normal">(Ganhar no Volume)</span></h3>
+                            <p class="text-xs text-slate-400">Preço Acessível / Grande Quantidade / Giro Rápido</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Define um <strong>preço mais competitivo e atrativo</strong> para atrair a maior quantidade possível de clientes rapidamente e dominar o pátio da escola.
+                    </p>
+                    <ul class="mt-3 space-y-1.5 text-xs text-slate-400 list-disc list-inside">
+                        <li><strong>Vantagem:</strong> Venda rápida e formação de grandes filas no estande.</li>
+                        <li><strong>Desafio:</strong> Exige produção rápida e controle rígido de custos.</li>
+                        <li><strong>Exemplo na Feira:</strong> Hot Dog Americano Tradicional / Mini Churros da Espanha.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Interactive Pricing Simulator -->
+            <div class="lg:col-span-12 bg-navy-800 border border-slate-700 p-6 rounded-2xl shadow-2xl space-y-6">
+                <h3 class="text-lg font-bold text-white flex items-center justify-between border-b border-slate-700 pb-3">
+                    <span><i class="fa-solid fa-sliders text-gold-500 mr-2"></i> Simulador de Estratégia de Preço</span>
+                    <span class="text-xs text-slate-400">Altere o preço e veja a projeção do estande</span>
+                </h3>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                    <div>
+                        <label for="price-strategy-select" class="block text-xs font-bold text-slate-300 mb-1">Selecione o Tipo de Produto:</label>
+                        <select id="price-strategy-select" onchange="runPricingSimulation()" class="w-full bg-navy-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-gold-500">
+                            <option value="suica">Suíça - Fondue de Chocolate Gourmet (Premium)</option>
+                            <option value="usa">EUA - Hot Dog Tradicional (Massa/Volume)</option>
+                            <option value="mexico">México - Nachos Supremos (Intermediário)</option>
+                        </select>
+
+                        <div class="mt-4">
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <label class="text-slate-300">Preço de Venda Praticado:</label>
+                                <span id="sim-price-label" class="text-gold-400 font-mono text-sm">R$ 18,00</span>
+                            </div>
+                            <input type="range" id="sim-price-slider" min="5" max="35" step="1" value="18" oninput="runPricingSimulation()"
+                                class="w-full h-2 bg-navy-950 rounded-lg appearance-none cursor-pointer accent-gold-500">
+                        </div>
+                    </div>
+
+                    <!-- Live Simulation Results -->
+                    <div class="md:col-span-2 bg-navy-950 p-5 rounded-xl border border-slate-700 space-y-3">
+                        <div class="flex justify-between items-center text-xs border-b border-slate-800 pb-2">
+                            <span class="text-slate-400">Estratégia Identificada:</span>
+                            <span id="sim-strategy-type" class="font-bold text-gold-400">Skimming (Preço Premium)</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono">
+                            <div class="bg-navy-900 p-2.5 rounded-lg">
+                                <span class="text-[10px] text-slate-500 block">Est. de Vendas</span>
+                                <strong id="sim-sales-volume" class="text-white text-sm">40 unid.</strong>
+                            </div>
+                            <div class="bg-navy-900 p-2.5 rounded-lg">
+                                <span class="text-[10px] text-slate-500 block">Faturamento Bruto</span>
+                                <strong id="sim-gross-revenue" class="text-emerald-400 text-sm">R$ 720,00</strong>
+                            </div>
+                            <div class="bg-navy-900 p-2.5 rounded-lg">
+                                <span class="text-[10px] text-slate-500 block">Posicionamento</span>
+                                <strong id="sim-brand-pos" class="text-gold-400 text-sm">Exclusivo</strong>
+                            </div>
+                        </div>
+                        <p id="sim-strategy-tip" class="text-[11px] text-slate-400 italic text-center">
+                            Preço elevado atrai público buscando experiência premium. Exige alto padrão de entrega!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULE 3: BREAK-EVEN & MARGIN OF SAFETY -->
+    <section id="ponto-equilibrio" class="py-16 px-4 max-w-6xl mx-auto scroll-mt-20 border-t border-slate-800">
+        <div class="mb-10 text-center md:text-left">
+            <span class="text-gold-500 font-bold text-sm tracking-wider uppercase"><i class="fa-solid fa-shield-cat mr-1"></i> Módulo 3 (Aula 03)</span>
+            <h2 class="text-2xl md:text-4xl font-extrabold text-white mt-1">Ponto de Equilíbrio e Margem de Segurança</h2>
+            <p class="text-slate-400 mt-2 max-w-2xl">Até onde podemos arriscar? Entenda a Margem de Segurança para saber o quanto suas vendas podem cair sem gerar prejuízo.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Risk & Safety Explanation -->
+            <div class="lg:col-span-5 space-y-4">
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold text-white mb-2"><i class="fa-solid fa-umbrella text-gold-400 mr-2"></i> O que é a Margem de Segurança?</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                        A <strong>Margem de Segurança (MS)</strong> indica o quanto a quantidade de vendas esperada está <i>acima</i> do Ponto de Equilíbrio (Break-Even).
+                    </p>
+
+                    <!-- Formula -->
+                    <div class="bg-navy-950 border border-gold-500/30 p-3.5 rounded-xl text-center space-y-1">
+                        <p class="text-[11px] text-slate-400 font-mono">Fórmula da Margem de Segurança (%)</p>
+                        <p class="text-xs font-bold text-gold-400 font-mono">
+                            MS (%) = [ (Vendas Esperadas - Break Even) / Vendas Esperadas ] × 100
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-navy-800 p-4 rounded-xl border border-slate-700 text-xs space-y-2">
+                    <span class="font-bold text-white block"><i class="fa-solid fa-gauge-high text-gold-400 mr-1"></i> Níveis de Risco Operacional:</span>
+                    <ul class="space-y-1 text-slate-400 text-[11px]">
+                        <li><strong class="text-rose-400">&lt; 20%:</strong> Perigo Alto! Qualquer imprevisto gera prejuízo.</li>
+                        <li><strong class="text-amber-400">20% a 40%:</strong> Risco Moderado e Controlado.</li>
+                        <li><strong class="text-emerald-400">&gt; 40%:</strong> Excelente colchão de segurança financeira.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Risk & Margin Calculator -->
+            <div class="lg:col-span-7 bg-navy-800 border border-slate-700 p-6 rounded-2xl shadow-2xl space-y-6">
+                <h3 class="text-lg font-bold text-white flex items-center justify-between border-b border-slate-700 pb-3">
+                    <span><i class="fa-solid fa-triangle-exclamation text-gold-500 mr-2"></i> Calculadora de Risco Operacional</span>
+                </h3>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                    <div>
+                        <label class="block font-semibold text-slate-300 mb-1">Custos Fixos (R$):</label>
+                        <input type="number" id="risk-cf" value="250" step="10" oninput="calculateRiskMetrics()" class="w-full bg-navy-950 border border-slate-700 rounded-xl px-3 py-2 text-gold-400 font-mono font-bold focus:outline-none focus:border-gold-500">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-300 mb-1">Preço de Venda Unitário (R$):</label>
+                        <input type="number" id="risk-price" value="15" step="1" oninput="calculateRiskMetrics()" class="w-full bg-navy-950 border border-slate-700 rounded-xl px-3 py-2 text-emerald-400 font-mono font-bold focus:outline-none focus:border-gold-500">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-300 mb-1">Custo Variável por Unidade (R$):</label>
+                        <input type="number" id="risk-cv" value="5" step="1" oninput="calculateRiskMetrics()" class="w-full bg-navy-950 border border-slate-700 rounded-xl px-3 py-2 text-rose-400 font-mono font-bold focus:outline-none focus:border-gold-500">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-300 mb-1">Meta de Vendas Esperada (Unid.):</label>
+                        <input type="number" id="risk-target" value="50" step="5" oninput="calculateRiskMetrics()" class="w-full bg-navy-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono font-bold focus:outline-none focus:border-gold-500">
+                    </div>
+                </div>
+
+                <!-- Live Metrics Display -->
+                <div class="bg-navy-950 p-5 rounded-xl border border-gold-500/30 space-y-4">
+                    <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono">
+                        <div class="bg-navy-900 p-2.5 rounded-lg border border-slate-800">
+                            <span class="text-[10px] text-slate-500 block">Break-Even</span>
+                            <strong id="metric-be" class="text-gold-400 text-sm">25 unid.</strong>
+                        </div>
+                        <div class="bg-navy-900 p-2.5 rounded-lg border border-slate-800">
+                            <span class="text-[10px] text-slate-500 block">Margem (Unid.)</span>
+                            <strong id="metric-ms-units" class="text-emerald-400 text-sm">25 unid.</strong>
+                        </div>
+                        <div class="bg-navy-900 p-2.5 rounded-lg border border-slate-800">
+                            <span class="text-[10px] text-slate-500 block">Margem (%)</span>
+                            <strong id="metric-ms-percent" class="text-emerald-400 text-sm">50.0%</strong>
+                        </div>
+                    </div>
+
+                    <!-- Risk Gauge Bar -->
+                    <div class="space-y-1">
+                        <div class="flex justify-between text-[11px] font-bold">
+                            <span class="text-slate-400">Termômetro de Risco:</span>
+                            <span id="risk-status-badge" class="text-emerald-400">Baixo Risco (Seguro)</span>
+                        </div>
+                        <div class="h-3 w-full bg-navy-900 rounded-full overflow-hidden p-0.5 border border-slate-800">
+                            <div id="risk-bar-fill" class="h-full bg-emerald-500 rounded-full transition-all duration-300" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULE 4: CASH FLOW & TOKEN AUDIT -->
+    <section id="fluxo-caixa" class="py-16 px-4 max-w-6xl mx-auto scroll-mt-20 border-t border-slate-800">
+        <div class="mb-10 text-center md:text-left">
+            <span class="text-gold-500 font-bold text-sm tracking-wider uppercase"><i class="fa-solid fa-money-bill-transfer mr-1"></i> Módulo 4 (Aula 04)</span>
+            <h2 class="text-2xl md:text-4xl font-extrabold text-white mt-1">Fluxo de Caixa e Controle de Fichas</h2>
+            <p class="text-slate-400 mt-2 max-w-2xl">Gestão das entradas e saídas em tempo real e prevenção da inadimplência no estande com o sistema de Fichas de Consumo/Serviço.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Theory & Ledger Rules -->
+            <div class="lg:col-span-5 space-y-4">
+                <div class="glass-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold text-white mb-2"><i class="fa-solid fa-receipt text-gold-400 mr-2"></i> Controle Anti-Inadimplência</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                        Durante a feira escolar, fiado ou "anotar na caderneta" para receber depois gera alta inadimplência.
+                    </p>
+                    <div class="bg-navy-950 p-3.5 rounded-xl border border-gold-500/30 text-xs space-y-2">
+                        <strong class="text-gold-400 block"><i class="fa-solid fa-ticket mr-1"></i> A Regra de Ouro das Fichas de Consumo:</strong>
+                        <p class="text-slate-300">O cliente paga no caixa central (ou do estande) e recebe uma <strong>Ficha/Token impresso</strong>. O prato só é produzido/entregue mediante a apresentação da ficha paga!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Cash Flow Simulator -->
+            <div class="lg:col-span-7 bg-navy-800 border border-slate-700 p-6 rounded-2xl shadow-2xl space-y-4">
+                <h3 class="text-lg font-bold text-white flex items-center justify-between border-b border-slate-700 pb-3">
+                    <span><i class="fa-solid fa-book-bookmark text-gold-500 mr-2"></i> Livro Caixa do Estande (Simulação em Tempo Real)</span>
+                    <button onclick="addCashFlowEntry()" class="text-xs bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold px-3 py-1.5 rounded-lg transition">
+                        <i class="fa-solid fa-plus mr-1"></i> Nova Lançamento
+                    </button>
+                </h3>
+
+                <!-- Transactions Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead>
+                            <tr class="border-b border-slate-700 text-slate-400 font-mono">
+                                <th class="py-2 px-2">Descrição</th>
+                                <th class="py-2 px-2">Tipo</th>
+                                <th class="py-2 px-2 text-right">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cashflow-tbody" class="divide-y divide-slate-800 text-slate-300">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Cash Balance Summary -->
+                <div class="bg-navy-950 p-4 rounded-xl border border-slate-700 flex justify-between items-center text-xs font-mono">
+                    <span class="text-slate-400">Saldo Final em Caixa:</span>
+                    <span id="cashflow-balance" class="text-base font-black text-emerald-400">R$ +180,00</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULE 5: PRACTICAL TEAM CHALLENGE (15 MIN) -->
+    <section id="desafio" class="py-16 px-4 max-w-6xl mx-auto scroll-mt-20 border-t border-slate-800">
+        <div class="mb-8 text-center">
+            <span class="bg-gold-500 text-navy-950 font-black text-xs px-3.5 py-1.5 rounded-full uppercase tracking-widest mb-2 inline-block shadow-md">
+                <i class="fa-solid fa-laptop-code mr-1"></i> Atividade Prática de 15 Minutos
+            </span>
+            <h2 class="text-2xl md:text-4xl font-extrabold text-white">Laboratório do Gestor Financeiro</h2>
+            <p class="text-slate-400 mt-2 max-w-2xl mx-auto text-sm">
+                Sua equipe foi contratada para auditar o planejamento do estande <strong>"Suíça - Fondue & Raclette Gourmet"</strong>. Faça o cálculo da engenharia financeira e emita o parecer oficial.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Case Study Specs -->
+            <div class="lg:col-span-5 bg-navy-800 p-6 rounded-2xl border border-slate-700 space-y-4 shadow-xl">
+                <div class="flex items-center space-x-3 border-b border-slate-700 pb-3">
+                    <span class="text-3xl">🫕</span>
+                    <div>
+                        <h3 class="font-bold text-white text-base">Estande: Suíça Gourmet</h3>
+                        <p class="text-xs text-gold-400">Projeto da Festa das Nações - 8º Ano</p>
+                    </div>
+                </div>
+
+                <div class="space-y-2.5 text-xs text-slate-300 leading-relaxed">
+                    <p class="font-bold text-white">📋 Dados Financeiros do Projeto:</p>
+                    <ul class="space-y-2 list-none">
+                        <li class="bg-navy-950 p-2.5 rounded-lg border border-slate-800 flex justify-between">
+                            <span>Aluguel de Rechauds/Panela Fondue (Invest. Fixo):</span>
+                            <strong class="text-gold-400 font-mono">R$ 180,00</strong>
+                        </li>
+                        <li class="bg-navy-950 p-2.5 rounded-lg border border-slate-800 flex justify-between">
+                            <span>Reserva de Caixa / Capital de Giro:</span>
+                            <strong class="text-emerald-400 font-mono">R$ 120,00</strong>
+                        </li>
+                        <li class="bg-navy-950 p-2.5 rounded-lg border border-slate-800 flex justify-between">
+                            <span>Preço de Venda Pretendido (Skimming):</span>
+                            <strong class="text-emerald-400 font-mono">R$ 20,00 / porção</strong>
+                        </li>
+                        <li class="bg-navy-950 p-2.5 rounded-lg border border-slate-800 flex justify-between">
+                            <span>Custo Variável dos Insumos por Porção:</span>
+                            <strong class="text-rose-400 font-mono">R$ 8,00 / porção</strong>
+                        </li>
+                        <li class="bg-navy-950 p-2.5 rounded-lg border border-slate-800 flex justify-between">
+                            <span>Meta de Vendas Estimada da Turma:</span>
+                            <strong class="text-white font-mono">40 porções</strong>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Team Answer Worksheet -->
+            <div class="lg:col-span-7 bg-navy-800 p-6 rounded-2xl border border-gold-500/30 shadow-2xl space-y-6">
+                <h3 class="text-lg font-bold text-white border-b border-slate-700 pb-3 flex justify-between items-center">
+                    <span><i class="fa-solid fa-file-signature text-gold-500 mr-2"></i> Relatório de Engenharia Financeira</span>
+                    <span class="text-xs text-slate-400">Preencha os campos abaixo</span>
+                </h3>
+
+                <form id="team-audit-form" onsubmit="event.preventDefault(); validateTeamAudit();" class="space-y-4 text-xs">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block font-semibold text-slate-300 mb-1">1. Capital Inicial Total (Fixo + Giro):</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-2.5 text-slate-500">R$</span>
+                                <input type="number" id="lab-capital" placeholder="Ex: 300" required class="w-full bg-navy-950 border border-slate-700 rounded-xl pl-8 pr-3 py-2 font-mono text-white focus:outline-none focus:border-gold-500">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block font-semibold text-slate-300 mb-1">2. Margem de Contribuição (P - CV):</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-2.5 text-slate-500">R$</span>
+                                <input type="number" id="lab-mc" placeholder="Ex: 12" required class="w-full bg-navy-950 border border-slate-700 rounded-xl pl-8 pr-3 py-2 font-mono text-white focus:outline-none focus:border-gold-500">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block font-semibold text-slate-300 mb-1">3. Break-Even de Cobertura do Capital:</label>
+                            <input type="number" id="lab-be" placeholder="Ex: 25" required class="w-full bg-navy-950 border border-slate-700 rounded-xl px-3 py-2 font-mono text-white focus:outline-none focus:border-gold-500">
+                        </div>
+
+                        <div>
+                            <label class="block font-semibold text-slate-300 mb-1">4. Margem de Segurança com 40 unid. (%):</label>
+                            <input type="number" id="lab-ms" placeholder="Ex: 37.5" step="0.1" required class="w-full bg-navy-950 border border-slate-700 rounded-xl px-3 py-2 font-mono text-white focus:outline-none focus:border-gold-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block font-semibold text-slate-300 mb-1">Parecer de Viabilidade Operacional:</label>
+                        <select id="lab-parecer" required class="w-full bg-navy-950 border border-slate-700 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-gold-500">
+                            <option value="">Selecione uma conclusão...</option>
+                            <option value="aprovado">Aprovado: Projeto com margem de segurança positiva e viabilidade financeira sólida.</option>
+                            <option value="reprovado">Reprovado: Alto risco de insolvência no evento.</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-navy-950 font-black py-3 rounded-xl shadow-lg transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-stamp"></i>
+                        <span>Emitir Parecer de Engenharia Financeira</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Audit Certificate Box -->
+        <div id="team-certificate-box" class="hidden mt-8 glass-card-gold p-6 rounded-2xl border border-gold-500 text-center space-y-4 animate-fade-in">
+            <div class="inline-block bg-gold-500 text-navy-950 p-3.5 rounded-full text-2xl font-black mb-1">
+                <i class="fa-solid fa-award"></i>
+            </div>
+            <h3 class="text-2xl font-black text-gold-400">Certificado de Engenharia Financeira VIVA 8º Ano</h3>
+            <p class="text-xs text-slate-200 max-w-xl mx-auto">
+                Parabéns, Equipe de Gestores! Todos os cálculos do projeto <strong>"Suíça - Fondue Gourmet"</strong> foram validados com 100% de exatidão técnica.
+            </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto text-xs font-mono text-slate-300 my-4">
+                <div class="bg-navy-950 p-2.5 rounded-lg border border-gold-500/30">
+                    <span class="block text-[10px] text-slate-500">Capital Inicial</span>
+                    <strong class="text-gold-400">R$ 300,00</strong>
+                </div>
+                <div class="bg-navy-950 p-2.5 rounded-lg border border-gold-500/30">
+                    <span class="block text-[10px] text-slate-500">MC por Unidade</span>
+                    <strong class="text-emerald-400">R$ 12,00</strong>
+                </div>
+                <div class="bg-navy-950 p-2.5 rounded-lg border border-gold-500/30">
+                    <span class="block text-[10px] text-slate-500">Break-Even</span>
+                    <strong class="text-gold-400">25 Unid.</strong>
+                </div>
+                <div class="bg-navy-950 p-2.5 rounded-lg border border-gold-500/30">
+                    <span class="block text-[10px] text-slate-500">Margem Seg.</span>
+                    <strong class="text-emerald-400">37.5%</strong>
+                </div>
+            </div>
+
+            <p class="text-xs text-gold-400 italic font-semibold">"Projeto Aprovado com Excelente Colchão de Segurança Financeira!"</p>
+        </div>
+    </section>
+
+    <!-- MODULE 6: GAMIFIED QUIZ -->
+    <section id="quiz" class="py-16 px-4 max-w-4xl mx-auto scroll-mt-20 border-t border-slate-800">
+        <div class="mb-8 text-center">
+            <span class="text-gold-500 font-bold text-sm tracking-wider uppercase"><i class="fa-solid fa-gamepad mr-1"></i> Avaliação Final</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-white mt-1">Mini Quiz de Fixação de Conceitos</h2>
+            <p class="text-slate-400 text-xs mt-1">Teste o conhecimento da equipe antes do encerramento da aula!</p>
+        </div>
+
+        <div id="8th-quiz-container" class="bg-navy-800 border border-slate-700 p-6 rounded-2xl shadow-2xl space-y-6">
+            <!-- Question 1 -->
+            <div class="quiz-8th-step space-y-3" data-step="1">
+                <span class="text-xs text-gold-400 font-bold uppercase">Pergunta 1 de 4</span>
+                <h4 class="text-sm md:text-base font-bold text-white">O que compõe o Capital Inicial completo para abrir um estande?</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    <button onclick="check8thQuiz(1, 'a', this)" class="quiz-8th-opt p-3 bg-navy-950 hover:bg-navy-700 border border-slate-700 rounded-xl text-left transition text-slate-200">
+                        A) Apenas os custos com divulgação nas redes sociais.
+                    </button>
+                    <button onclick="check8thQuiz(1, 'b', this)" class="quiz-8th-opt p-3 bg-navy-950 hover:bg-navy-700 border border-slate-700 rounded-xl text-left transition text-slate-200">
+                        B) Investimento Fixo (Estrutura) + Capital de Giro. ✅
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="quiz-8th-step space-y-3 hidden" data-step="2">
+                <span class="text-xs text-gold-400 font-bold uppercase">Pergunta 2 de 4</span>
+                <h4 class="text-sm md:text-base font-bold text-white">Qual é o foco da estratégia de precificação por "Skimming"?</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    <button onclick="check8thQuiz(2, 'a', this)" class="quiz-8th-opt p-3 bg-navy-950 hover:bg-navy-700 border border-slate-700 rounded-xl text-left transition text-slate-200">
+                        A) Preço Premium inicial focado em exclusividade e alta margem. ✅
+                    </button>
+                    <button onclick="check8thQuiz(2, 'b', this)" class="quiz-8th-opt p-3 bg-navy-950 hover:bg-navy-700 border border-slate-700 rounded-xl text-left transition text-slate-200">
+                        B) Preço muito baixo para vender a maior quantidade possível.
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="quiz-8th-step space-y-3 hidden" data-step="3">
+                <span class="text-xs text-gold-400 font-bold uppercase">Pergunta 3 de 4</span>
+                <h4 class="text-sm md:text-base font-bold text-white">O que significa uma Margem de Segurança de 40%?</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    <button onclick="check8thQuiz(3, 'a', this)" class="quiz-8th-opt p-3 bg-navy-950 hover:bg-navy-700 border border-slate-700 rounded-xl text-left transition text-slate-200">
+                        A) Que o estande terá prejuízo se vender 1 unidade a menos.
+                    </button>
+                    <button onclick="check8thQuiz(3, 'b', this)" class="quiz-8th-opt p-3 bg-navy-950 hover:bg-navy-700 border border-slate-700 rounded-xl text-left transition text-slate-200">
+                        B) Que as vendas podem cair até 40% antes de entrar no prejuízo. ✅
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="quiz-8th-step space-y-3 hidden" data-step="4">
+                <span class="text-xs text-gold-400 font-bold uppercase">Pergunta 4 de 4</span>
+                <h4 class="text-sm md:text-base font-bold text-white">Qual a principal função do uso de Fichas de Consumo no estande?</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                    <button onclick="check8thQuiz(4, 'a', this)" class="quiz-8th-opt p-3 bg-navy-950 hover:bg-navy-700 border border-slate-700 rounded-xl text-left transition text-slate-200">
+                        A) Evitar inadimplência e garantir o recebimento antes da entrega. ✅
+                    </button>
+                    <button onclick="check8thQuiz(4, 'b', this)" class="quiz-8th-opt p-3 bg-navy-950 hover:bg-navy-700 border border-slate-700 rounded-xl text-left transition text-slate-200">
+                        B) Aumentar o custo fixo de impressão do projeto.
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quiz Result -->
+            <div id="quiz-8th-result" class="hidden text-center space-y-3 py-4">
+                <div class="text-3xl text-gold-400"><i class="fa-solid fa-trophy"></i></div>
+                <h4 class="text-lg font-bold text-white">Parabéns! Quiz do 8º Ano Concluído!</h4>
+                <p class="text-xs text-slate-300">Você dominou a Engenharia Financeira e a Gestão de Risco do seu projeto!</p>
+                <button onclick="reset8thQuiz()" class="text-xs bg-gold-500 text-navy-950 font-bold px-4 py-2 rounded-lg transition">
+                    Refazer Quiz
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-950 border-t border-slate-800 py-8 px-4 text-center text-xs text-slate-500">
+        <p class="mb-2"><strong>Ciclo VIVA - Empreendedorismo & Engenharia Financeira 8º Ano</strong></p>
+        <p>Desenvolvido para apoio pedagógico do Ensino Fundamental II | Festa das Nações 2026</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // ----------------------------------------------------
+        // 1. TIMER LOGIC
+        // ----------------------------------------------------
+        let timeLeft = 50 * 60;
+        let timerInterval = null;
+        let isTimerRunning = false;
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('timer-display').textContent = 
+                `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        function toggleTimer() {
+            const icon = document.getElementById('timer-icon');
+            if (isTimerRunning) {
+                clearInterval(timerInterval);
+                isTimerRunning = false;
+                icon.className = 'fa-solid fa-play';
+            } else {
+                timerInterval = setInterval(() => {
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        updateTimerDisplay();
+                    } else {
+                        clearInterval(timerInterval);
+                        alert("Tempo da aula de 50 minutos encerrado!");
+                    }
+                }, 1000);
+                isTimerRunning = true;
+                icon.className = 'fa-solid fa-pause';
+            }
+        }
+
+        // ----------------------------------------------------
+        // 2. CAPITAL BUDGETING BUILDER
+        // ----------------------------------------------------
+        const budgetCatalog = [
+            { id: 1, name: 'Aluguel de Rechauds/Chapa', category: 'fixo', cost: 150, selected: true },
+            { id: 2, name: 'Banner em Lona com Suporte', category: 'fixo', cost: 80, selected: true },
+            { id: 3, name: 'Estoque Inicial de Ingredientes', category: 'giro', cost: 120, selected: true },
+            { id: 4, name: 'Embalagens e Copos Especiais', category: 'giro', cost: 50, selected: true },
+            { id: 5, name: 'Decoração Temática de Luxo', category: 'fixo', cost: 100, selected: false },
+            { id: 6, name: 'Fundo de Troco em Dinheiro', category: 'giro', cost: 50, selected: true },
+        ];
+
+        function renderBudgetBuilder() {
+            const container = document.getElementById('budget-items-container');
+            container.innerHTML = '';
+
+            let sumFixo = 0;
+            let sumGiro = 0;
+
+            budgetCatalog.forEach(item => {
+                if (item.selected) {
+                    if (item.category === 'fixo') sumFixo += item.cost;
+                    else sumGiro += item.cost;
+                }
+
+                const itemCard = document.createElement('div');
+                itemCard.className = `p-3 rounded-xl border cursor-pointer transition flex justify-between items-center ${
+                    item.selected 
+                        ? 'bg-navy-950 border-gold-500/60 text-white' 
+                        : 'bg-navy-900/50 border-slate-800 text-slate-500 hover:border-slate-700'
+                }`;
+                itemCard.onclick = () => toggleBudgetItem(item.id);
+
+                itemCard.innerHTML = `
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid ${item.selected ? 'fa-square-check text-gold-400' : 'fa-square text-slate-600'} text-sm"></i>
+                        <div>
+                            <span class="font-bold block">${item.name}</span>
+                            <span class="text-[10px] ${item.category === 'fixo' ? 'text-amber-400' : 'text-emerald-400'} font-mono uppercase">${item.category === 'fixo' ? 'Invest. Fixo' : 'Capital de Giro'}</span>
+                        </div>
+                    </div>
+                    <span class="font-mono font-bold">R$ ${item.cost.toFixed(2)}</span>
+                `;
+                container.appendChild(itemCard);
+            });
+
+            document.getElementById('total-fixo').textContent = `R$ ${sumFixo.toFixed(2)}`;
+            document.getElementById('total-giro').textContent = `R$ ${sumGiro.toFixed(2)}`;
+            document.getElementById('total-geral').textContent = `R$ ${(sumFixo + sumGiro).toFixed(2)}`;
+        }
+
+        function toggleBudgetItem(id) {
+            const item = budgetCatalog.find(i => i.id === id);
+            if (item) {
+                item.selected = !item.selected;
+                renderBudgetBuilder();
+            }
+        }
+
+        // ----------------------------------------------------
+        // 3. PRICING SIMULATOR
+        // ----------------------------------------------------
+        function runPricingSimulation() {
+            const type = document.getElementById('price-strategy-select').value;
+            const price = parseFloat(document.getElementById('sim-price-slider').value);
+
+            document.getElementById('sim-price-label').textContent = `R$ ${price.toFixed(2)}`;
+
+            let estimatedVolume = 0;
+            let strategyType = "";
+            let brandPos = "";
+            let tip = "";
+
+            if (price >= 20) {
+                strategyType = "Skimming (Preço Premium)";
+                estimatedVolume = Math.max(15, Math.round(70 - (price * 1.8)));
+                brandPos = "Gourmet / Exclusivo";
+                tip = "Preço elevado atrai público buscando experiência premium. Exige alto padrão de entrega!";
+            } else if (price <= 10) {
+                strategyType = "Penetração de Mercado";
+                estimatedVolume = Math.round(110 - (price * 3));
+                brandPos = "Popular / Alto Giro";
+                tip = "Preço atrativo gera grandes filas no estande! Garanta equipe rápida de produção.";
+            } else {
+                strategyType = "Estratégia Intermediária";
+                estimatedVolume = Math.round(85 - (price * 2));
+                brandPos = "Equilibrado";
+                tip = "Bom equilíbrio entre margem unitária e volume aceitável pelo público escolar.";
+            }
+
+            const grossRevenue = estimatedVolume * price;
+
+            document.getElementById('sim-strategy-type').textContent = strategyType;
+            document.getElementById('sim-sales-volume').textContent = `${estimatedVolume} unid.`;
+            document.getElementById('sim-gross-revenue').textContent = `R$ ${grossRevenue.toFixed(2)}`;
+            document.getElementById('sim-brand-pos').textContent = brandPos;
+            document.getElementById('sim-strategy-tip').textContent = tip;
+        }
+
+        // ----------------------------------------------------
+        // 4. RISK & MARGIN CALCULATOR
+        // ----------------------------------------------------
+        function calculateRiskMetrics() {
+            const cf = parseFloat(document.getElementById('risk-cf').value) || 0;
+            const price = parseFloat(document.getElementById('risk-price').value) || 0;
+            const cv = parseFloat(document.getElementById('risk-cv').value) || 0;
+            const target = parseFloat(document.getElementById('risk-target').value) || 0;
+
+            const mc = price - cv;
+
+            if (mc <= 0 || target <= 0) {
+                document.getElementById('metric-be').textContent = 'Inviável';
+                document.getElementById('metric-ms-units').textContent = '0 unid.';
+                document.getElementById('metric-ms-percent').textContent = '0.0%';
+                return;
+            }
+
+            const breakEven = Math.ceil(cf / mc);
+            const msUnits = target - breakEven;
+            const msPercent = ((target - breakEven) / target) * 100;
+
+            document.getElementById('metric-be').textContent = `${breakEven} unid.`;
+            document.getElementById('metric-ms-units').textContent = `${msUnits} unid.`;
+            
+            const msPercentLabel = document.getElementById('metric-ms-percent');
+            const statusBadge = document.getElementById('risk-status-badge');
+            const barFill = document.getElementById('risk-bar-fill');
+
+            msPercentLabel.textContent = `${msPercent.toFixed(1)}%`;
+
+            if (msPercent < 20) {
+                msPercentLabel.className = 'text-rose-400 text-sm';
+                statusBadge.className = 'text-rose-400';
+                statusBadge.textContent = 'Alto Risco (Zona de Perigo)';
+                barFill.className = 'h-full bg-rose-500 rounded-full transition-all duration-300';
+                barFill.style.width = `${Math.max(10, Math.min(100, msPercent))}%`;
+            } else if (msPercent <= 40) {
+                msPercentLabel.className = 'text-amber-400 text-sm';
+                statusBadge.className = 'text-amber-400';
+                statusBadge.textContent = 'Risco Moderado';
+                barFill.className = 'h-full bg-amber-500 rounded-full transition-all duration-300';
+                barFill.style.width = `${msPercent}%`;
+            } else {
+                msPercentLabel.className = 'text-emerald-400 text-sm';
+                statusBadge.className = 'text-emerald-400';
+                statusBadge.textContent = 'Baixo Risco (Seguro)';
+                barFill.className = 'h-full bg-emerald-500 rounded-full transition-all duration-300';
+                barFill.style.width = `${Math.min(100, msPercent)}%`;
+            }
+        }
+
+        // ----------------------------------------------------
+        // 5. CASH FLOW TRANSACTIONS
+        // ----------------------------------------------------
+        const initialTransactions = [
+            { desc: 'Integralização do Capital Inicial', type: 'in', amount: 300 },
+            { desc: 'Aluguel do Rechaud (Invest. Fixo)', type: 'out', amount: 150 },
+            { desc: 'Venda Fichas - Lote 1 (10 porções)', type: 'in', amount: 200 },
+            { desc: 'Compra Reposição Morangos/Chocolate', type: 'out', amount: 70 },
+            { desc: 'Venda Fichas - Lote 2 (10 porções)', type: 'in', amount: 200 }
+        ];
+
+        function renderCashFlowTable() {
+            const tbody = document.getElementById('cashflow-tbody');
+            tbody.innerHTML = '';
+            let balance = 0;
+
+            initialTransactions.forEach(t => {
+                if (t.type === 'in') balance += t.amount;
+                else balance -= t.amount;
+
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-navy-900/40';
+                tr.innerHTML = `
+                    <td class="py-2 px-2">${t.desc}</td>
+                    <td class="py-2 px-2">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold ${t.type === 'in' ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'}">
+                            ${t.type === 'in' ? 'Entrada' : 'Saída'}
+                        </span>
+                    </td>
+                    <td class="py-2 px-2 text-right font-mono font-bold ${t.type === 'in' ? 'text-emerald-400' : 'text-rose-400'}">
+                        ${t.type === 'in' ? '+' : '-'} R$ ${t.amount.toFixed(2)}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.getElementById('cashflow-balance').textContent = `R$ ${balance >= 0 ? '+' : ''}${balance.toFixed(2)}`;
+        }
+
+        function addCashFlowEntry() {
+            const desc = prompt("Descrição do lançamento:");
+            if (!desc) return;
+            const amount = parseFloat(prompt("Valor em R$:"));
+            if (isNaN(amount) || amount <= 0) return;
+            const type = confirm("Pressione OK para ENTRADA de dinheiro ou CANCELAR para SAÍDA") ? 'in' : 'out';
+
+            initialTransactions.push({ desc, type, amount });
+            renderCashFlowTable();
+        }
+
+        // ----------------------------------------------------
+        // 6. TEAM AUDIT LAB VALIDATION
+        // ----------------------------------------------------
+        function validateTeamAudit() {
+            const capital = parseFloat(document.getElementById('lab-capital').value);
+            const mc = parseFloat(document.getElementById('lab-mc').value);
+            const be = parseFloat(document.getElementById('lab-be').value);
+            const ms = parseFloat(document.getElementById('lab-ms').value);
+            const parecer = document.getElementById('lab-parecer').value;
+
+            // Correct Solution for Switzerland Stand:
+            // Capital Inicial = 180 (Fixo) + 120 (Giro) = 300
+            // MC = 20 - 8 = 12
+            // Break-Even para cobrir R$ 300 capital = 300 / 12 = 25 porções
+            // Margem de Segurança = ((40 - 25) / 40) * 100 = (15 / 40) * 100 = 37.5%
+            
+            const isCapitalCorrect = capital === 300;
+            const isMcCorrect = mc === 12;
+            const isBeCorrect = be === 25;
+            const isMsCorrect = Math.abs(ms - 37.5) < 0.2;
+            const isParecerCorrect = parecer === 'aprovado';
+
+            if (isCapitalCorrect && isMcCorrect && isBeCorrect && isMsCorrect && isParecerCorrect) {
+                document.getElementById('team-certificate-box').classList.remove('hidden');
+                document.getElementById('team-certificate-box').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert("Ainda existem divergências na auditoria da equipe!\nVerifique:\n- Capital Inicial (Fixo + Giro)\n- Margem de Contribuição (20 - 8)\n- Break-Even (300 / 12)\n- Margem de Segurança (%) com 40 porções");
+            }
+        }
+
+        // ----------------------------------------------------
+        // 7. GAMIFIED QUIZ LOGIC
+        // ----------------------------------------------------
+        const correctAnswers8th = { 1: 'b', 2: 'a', 3: 'b', 4: 'a' };
+
+        function check8thQuiz(step, choice, btn) {
+            const isCorrect = choice === correctAnswers8th[step];
+            const currentStepEl = document.querySelector(`.quiz-8th-step[data-step="${step}"]`);
+
+            if (isCorrect) {
+                btn.classList.replace('bg-navy-950', 'bg-emerald-500/20');
+                btn.classList.add('border-emerald-500', 'text-emerald-400');
+                
+                setTimeout(() => {
+                    currentStepEl.classList.add('hidden');
+                    if (step < 4) {
+                        document.querySelector(`.quiz-8th-step[data-step="${step + 1}"]`).classList.remove('hidden');
+                    } else {
+                        document.getElementById('quiz-8th-result').classList.remove('hidden');
+                    }
+                }, 800);
+            } else {
+                btn.classList.replace('bg-navy-950', 'bg-rose-500/20');
+                btn.classList.add('border-rose-500', 'text-rose-400');
+            }
+        }
+
+        function reset8thQuiz() {
+            document.getElementById('quiz-8th-result').classList.add('hidden');
+            document.querySelectorAll('.quiz-8th-step').forEach((el, index) => {
+                if (index === 0) el.classList.remove('hidden');
+                else el.classList.add('hidden');
+            });
+            document.querySelectorAll('.quiz-8th-opt').forEach(btn => {
+                btn.className = 'quiz-8th-opt p-3 bg-navy-950 hover:bg-navy-700 border border-slate-700 rounded-xl text-left transition text-slate-200';
+            });
+        }
+
+        // INIT ON PAGE LOAD
+        window.onload = function() {
+            updateTimerDisplay();
+            renderBudgetBuilder();
+            runPricingSimulation();
+            calculateRiskMetrics();
+            renderCashFlowTable();
+        };
+    </script>
+</body>
+</html>
